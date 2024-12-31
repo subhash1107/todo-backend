@@ -1,5 +1,6 @@
 import { Task } from '../models/Task.js';
 
+// Create task controller
 export const createTask = async (req, res) => {
     try {
         const { title, description } = req.body;
@@ -20,6 +21,7 @@ export const createTask = async (req, res) => {
     }
 };
 
+// Get all tasks controller
 export const getAllTasks = async (req, res) => {
     try {
         const tasks = await Task.find({ user: req.user._id }).sort({ createdAt: -1 });
@@ -29,6 +31,7 @@ export const getAllTasks = async (req, res) => {
     }
 };
 
+// Get particular task by taskID controller
 export const getTaskById = async (req, res) => {
     try {
         const task = await Task.findOne({ _id: req.params.id, user: req.user._id });
@@ -44,6 +47,7 @@ export const getTaskById = async (req, res) => {
     }
 };
 
+// Update task status by taskID controller
 export const updateTaskStatus = async (req, res) => {
     try {
         const { status } = req.body;
@@ -76,6 +80,7 @@ export const updateTaskStatus = async (req, res) => {
     }
 };
 
+// Update task by taskID controller
 export const deleteTask = async (req, res) => {
     try {
         const task = await Task.findOneAndDelete({

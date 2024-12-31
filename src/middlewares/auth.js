@@ -12,13 +12,9 @@ export const auth = async (req, res, next) => {
     const user = await User.findById(decoded.userId).select("firstName lastName email _id");;
     if (!user) {
       return res.status(401).json({ error: "User not found" });
-    }
-    console.log("auth.js "+user);
-    
+    }   
 
     req.user = user
-
-    console.log("auth.js "+req.user);
     
     next();
   } catch (error) {
